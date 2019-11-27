@@ -4,8 +4,13 @@
 \alias{argonDropdownItem}
 \title{Create a Boostrap 4 argon dropdown item}
 \usage{
-argonDropdownItem(name = NULL, description = NULL, src = NULL,
-  icon = NULL, status = NULL)
+argonDropdownItem(
+  name = NULL,
+  description = NULL,
+  src = NULL,
+  icon = NULL,
+  status = NULL
+)
 }
 \arguments{
 \item{name}{Item name.}
@@ -14,7 +19,7 @@ argonDropdownItem(name = NULL, description = NULL, src = NULL,
 
 \item{src}{HTML target page.}
 
-\item{icon}{Item icon of any.}
+\item{icon}{Item icon of any. Expect \link{argonIcon} or \link[shiny]{icon}.}
 
 \item{status}{Icon and name color status. See \url{https://demos.creative-tim.com/argon-design-system/docs/foundation/colors.html}.}
 }

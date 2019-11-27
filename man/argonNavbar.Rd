@@ -4,14 +4,27 @@
 \alias{argonNavbar}
 \title{Create a Boostrap 4 argon navbar}
 \usage{
-argonNavbar(..., src = NULL, id)
+argonNavbar(
+  ...,
+  href = "#",
+  src = NULL,
+  src_collapsed = NULL,
+  id,
+  headroom = TRUE
+)
 }
 \arguments{
 \item{...}{Slot for \link{argonNavMenu}.}
 
+\item{href}{Link to another HTML page.}
+
 \item{src}{Brand image path or url.}
 
+\item{src_collapsed}{Brand image path or url on small devices. Background is white.}
+
 \item{id}{Navbar toggle unique id.}
+
+\item{headroom}{Whether to apply headroom.js effect to the header. TRUE by default.}
 }
 \description{
 Build an argon navbar

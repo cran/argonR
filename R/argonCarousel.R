@@ -101,13 +101,13 @@ argonCarousel <- function(..., id, floating = FALSE, hover_lift = FALSE, width =
       id = id,
       `data-ride` = "carousel",
       carouselNav,
-      carouselContent#,
-      #carouselControls
+      carouselContent,
+      carouselControls
     )
   )
   
   # column wrapper
-  argonColumn(width = width, carouselTag)
+  argonContainer(argonColumn(width = width, carouselTag))
 }
 
 

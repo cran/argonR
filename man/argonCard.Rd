@@ -4,11 +4,23 @@
 \alias{argonCard}
 \title{Create a Boostrap 4 card}
 \usage{
-argonCard(..., title = NULL, src = NULL, hover_lift = FALSE,
-  shadow = FALSE, shadow_size = NULL, hover_shadow = FALSE,
-  border_level = 0, icon = NULL, status = "primary",
-  background_color = NULL, gradient = FALSE, floating = FALSE,
-  width = 6)
+argonCard(
+  ...,
+  title = NULL,
+  src = NULL,
+  hover_lift = FALSE,
+  shadow = FALSE,
+  shadow_size = NULL,
+  hover_shadow = FALSE,
+  border_level = 0,
+  icon = NULL,
+  btn_text = "More",
+  status = "primary",
+  background_color = NULL,
+  gradient = FALSE,
+  floating = FALSE,
+  width = 6
+)
 }
 \arguments{
 \item{...}{Body content.}
@@ -28,7 +40,9 @@ Not compatible with floating.}
 
 \item{border_level}{Border level. O by default.}
 
-\item{icon}{Card icon}
+\item{icon}{Card icon. Expect \link{argonIcon} or \link[shiny]{icon}.}
+
+\item{btn_text}{Button text. src arg must not be NULL so that this button appears.}
 
 \item{status}{Card status. See \url{https://demos.creative-tim.com/argon-design-system/docs/foundation/colors.html}.}
 
@@ -53,7 +67,7 @@ if (interactive()) {
   title = "Card 1",
   hover_lift = TRUE,
   shadow = TRUE,
-  icon = "check-bold",
+  icon = argonIcon("check-bold"),
   src = "#",
   "Argon is a great free UI package based on Bootstrap 4 
   that includes the most important components and features."

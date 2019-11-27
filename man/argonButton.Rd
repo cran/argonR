@@ -4,16 +4,27 @@
 \alias{argonButton}
 \title{Create a Boostrap 4 argon button}
 \usage{
-argonButton(name = NULL, status = "default", icon = NULL,
-  size = NULL, block = FALSE, disabled = FALSE, outline = FALSE,
-  toggle_modal = FALSE, modal_id = NULL)
+argonButton(
+  src = NULL,
+  name = NULL,
+  status = "default",
+  icon = NULL,
+  size = NULL,
+  block = FALSE,
+  disabled = FALSE,
+  outline = FALSE,
+  toggle_modal = FALSE,
+  modal_id = NULL
+)
 }
 \arguments{
+\item{src}{Button external link.}
+
 \item{name}{Button label.}
 
 \item{status}{Button color. See \url{https://demos.creative-tim.com/argon-design-system/docs/components/buttons.html}.}
 
-\item{icon}{Button icon.}
+\item{icon}{Button icon. Expect \link{argonIcon} or \link[shiny]{icon}.}
 
 \item{size}{Button size: NULL, "sm" or "lg".}
 
@@ -36,7 +47,7 @@ if(interactive()){
  argonButton(
   name = "Click me!",
   status = "danger",
-  icon = "atom",
+  icon = argonIcon("atom"),
   size = "lg",
   toggle_modal = TRUE,
   modal_id = "modal1"

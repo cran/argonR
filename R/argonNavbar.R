@@ -3,8 +3,11 @@
 #' Build an argon navbar
 #'
 #' @param ... Slot for \link{argonNavMenu}.
+#' @param href Link to another HTML page.
 #' @param src Brand image path or url. 
+#' @param src_collapsed Brand image path or url on small devices. Background is white.
 #' @param id Navbar toggle unique id.
+#' @param headroom Whether to apply headroom.js effect to the header. TRUE by default.
 #'
 #' @examples
 #' if(interactive()){
@@ -74,19 +77,20 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-argonNavbar <- function(..., src = NULL, id) {
+argonNavbar <- function(..., href = "#", src = NULL, src_collapsed = NULL, id,
+                        headroom = TRUE) {
   
   # brand
   navBrand <- htmltools::tags$a(
     class = "navbar-brand mr-lg-5",
-    href= "#",
+    href = href,
     htmltools::tags$img(src = src)
   )
   
   # toggler
   navbarToggler <- htmltools::tags$button(
-    class="navbar-toggler collapsed",
-    type="button",
+    class = "navbar-toggler collapsed",
+    type = "button",
     `data-toggle` = "collapse",
     `data-target` = paste0("#", id),
     `aria-controls` = id,
@@ -101,15 +105,15 @@ argonNavbar <- function(..., src = NULL, id) {
     id = id,
     style = NA,
     htmltools::tags$div(
-      class="navbar-collapse-header",
+      class = "navbar-collapse-header",
       htmltools::tags$div( 
-        class="row",
+        class = "row",
         htmltools::tags$div(
-          class="col-6 collapse-brand",
-          htmltools::tags$a(href="#", htmltools::tags$img(src = src))
+          class = "col-6 collapse-brand",
+          htmltools::tags$a(href = href, htmltools::tags$img(src = src_collapsed))
         ),
         htmltools::tags$div( 
-          class="col-6 collapse-close",
+          class = "col-6 collapse-close",
           htmltools::tags$button(
             type = "button", 
             class = "navbar-toggler", 
@@ -117,7 +121,7 @@ argonNavbar <- function(..., src = NULL, id) {
             `data-target` = paste0("#", id), 
             `aria-controls` = id, 
             `aria-expanded` = "false", 
-            `aria-label`="Toggle navigation",
+            `aria-label` = "Toggle navigation",
             htmltools::tags$span(),
             htmltools::tags$span()
           )
@@ -129,7 +133,10 @@ argonNavbar <- function(..., src = NULL, id) {
   
   # wrapper
   htmltools::tags$nav(
-    class = "navbar navbar-main navbar-expand-lg navbar-transparent navbar-light",
+    class = paste0(
+      "navbar navbar-main navbar-expand-lg navbar-transparent navbar-light",
+      if (headroom) " headroom headroom--not-bottom headroom--pinned headroom--top"
+    ),
     id = "navbar-main",
     htmltools::tags$div(
       class = "container",
@@ -172,7 +179,7 @@ argonNavMenu <- function(..., side = "left") {
 #'
 #' @param name Item name.
 #' @param src HTML target page.
-#' @param icon Item icon of any.
+#' @param icon Item icon of any. Expect \link{argonIcon} or \link[shiny]{icon}.
 #' @param tooltip Text to display when the item is hovered.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
@@ -184,11 +191,11 @@ argonNavItem <- function(name = NULL, src = NULL, icon = NULL, tooltip = NULL) {
     htmltools::tags$a(
       class = "nav-link nav-link-icon", 
       href = src,
-      target = "_blank",
+      #target = "_blank",
       `data-toggle` = "tooltip",
       title = "",
       `data-original-title` = tooltip,
-      htmltools::tags$i(class = paste0("fa fa-", icon)),
+      icon,
       htmltools::tags$span(class = "nav-link-inner--text d-lg-none", name)
     )
   )
@@ -239,7 +246,7 @@ argonDropdown <- function(..., name, size = NULL) {
 #' @param name Item name.
 #' @param description Item description if any.
 #' @param src HTML target page.
-#' @param icon Item icon of any.
+#' @param icon Item icon of any. Expect \link{argonIcon} or \link[shiny]{icon}.
 #' @param status Icon and name color status. See \url{https://demos.creative-tim.com/argon-design-system/docs/foundation/colors.html}.
 #' 
 #' @author David Granjon, \email{dgranjon@@ymail.com}
@@ -253,7 +260,7 @@ argonDropdownItem <- function(name = NULL, description = NULL, src = NULL,
     # icon if any
     if (!is.null(icon)) {
       argonIconWrapper(
-        iconTag = argonIcon(icon, color = "white"),
+        iconTag = icon,
         gradient_color = status,
         circle = TRUE,
         size = NULL,
